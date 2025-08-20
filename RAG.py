@@ -35,6 +35,9 @@ vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings
 
 retriever = vectorstore.as_retriever()
 
+#rag prompt
+prompt = hub.pull("rlm/rag-prompt")
+
 
 
 if __name__ == "__main__":
