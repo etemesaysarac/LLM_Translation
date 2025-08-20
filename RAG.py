@@ -38,7 +38,13 @@ retriever = vectorstore.as_retriever()
 #rag prompt
 prompt = hub.pull("rlm/rag-prompt")
 
-
+rag_chain = (
+    {"content" : retriever | format_docs, "question" : RunnablePassthrough()}
+    | prompt
+    | llm
+    | StrOutputParser()
+)
 
 if __name__ == "__main__":
-    print(format_docs(docs))
+    for chunk in rag_chain.stream("What is task decomposition ? ")
+        print(chunk, end="", flush=True)
