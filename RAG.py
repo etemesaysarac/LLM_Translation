@@ -25,6 +25,10 @@ loader = WebBaseLoader(
 
 docs = loader.load()
 
+
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for doc in docs)
+
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 splits = text_splitter.split_documents(docs)
 vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings())
@@ -34,4 +38,4 @@ retriever = vectorstore.as_retriever()
 
 
 if __name__ == "__main__":
-    print(docs)
+    print(format_docs(docs))
