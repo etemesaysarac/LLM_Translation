@@ -25,7 +25,6 @@ promt_template = ChatPromptTemplate.from_messages([
 parser = StrOutputParser()
 
 chain = promt_template | model | parser
-
 app = FastAPI(
     title="Simple Message Chain",
     description="Simple Message Chain Description",

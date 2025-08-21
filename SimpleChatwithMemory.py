@@ -35,12 +35,12 @@ with_message_history = RunnableWithMessageHistory(chain, get_session_history)
 
 if __name__ == "__main__":
     while True:
-        user_input = input("> ")
+        user_input = input("\n > ")
         for r in with_message_history.stream(
                 {
                     "messages": [HumanMessage(content=user_input)]
                 },
                 config=config,
         ):
-            print(r.content, end=",")
+            print(r.content, end="")
 
